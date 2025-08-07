@@ -188,27 +188,6 @@ body {
   align-items: center;
 }
 
-.share-icon-inline {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(100, 55, 160, 0.1);
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.share-icon-inline:hover {
-  background: rgba(100, 55, 160, 0.2);
-  transform: scale(1.1);
-}
-
-.share-icon-inline svg {
-  width: 18px;
-  height: 18px;
-}
 
 .invite-code {
   opacity: 0.80;
@@ -358,9 +337,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.share-button svg {
+  width: 20px;
+  height: 20px;
 }
 
 .share-button:hover {
