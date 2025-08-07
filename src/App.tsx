@@ -24,7 +24,7 @@ function App() {
       <div className="desktop-redirect">
         <div className="redirect-content">
           <img src={swifeyLogo} alt="Swifey" className="redirect-logo" />
-          <h1>📱 Please open on mobile</h1>
+          <h1>Please open on mobile</h1>
           <p>This experience is designed for mobile devices.</p>
           <p>Please scan the QR code or open this link on your phone.</p>
         </div>
@@ -47,7 +47,6 @@ function App() {
             <div className="points-label">Your Points</div>
             <div className="points-value">42.00</div>
           </div>
-          <div className="points-icon">🎁</div>
         </div>
 
         {/* Main CTA Section */}
