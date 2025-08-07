@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import swifeyLogo from './assets/swifey-logo.svg'
-import splashWordMark from './assets/splashWordMark.png'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false)
