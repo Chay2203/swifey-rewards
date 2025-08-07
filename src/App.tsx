@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import swifeyLogo from './assets/swifey-logo.svg'
+import splashWordMark from './assets/splashWordMark.png'
 
 function App() {
   const [isMobile, setIsMobile] = useState(false)
-  const [copyMessage, setCopyMessage] = useState('')
 
-  const inviteCode = 'BR7QQE'
   const appStoreLink = 'https://apps.apple.com/us/app/swifey-dating/id6737560814'
   const playStoreLink = 'https://play.google.com/store/apps/details?id=com.flutter.r42.swifey'
 
@@ -20,49 +20,11 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const copyInviteCode = async () => {
-    try {
-      await navigator.clipboard.writeText(inviteCode)
-      setCopyMessage('Copied!')
-      setTimeout(() => setCopyMessage(''), 2000)
-    } catch (err) {
-      setCopyMessage('Failed to copy')
-      setTimeout(() => setCopyMessage(''), 2000)
-    }
-  }
-
-  const shareInvite = async () => {
-    const shareText = `Join me on Swifey! Use my invite code: ${inviteCode}\n\nDownload here:\niOS: ${appStoreLink}\nAndroid: ${playStoreLink}`
-    
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'Join Swifey!',
-          text: shareText,
-        })
-      } catch (err) {
-        copyToClipboard(shareText)
-      }
-    } else {
-      copyToClipboard(shareText)
-    }
-  }
-
-  const copyToClipboard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-      setCopyMessage('Share message copied!')
-      setTimeout(() => setCopyMessage(''), 2000)
-    } catch (err) {
-      setCopyMessage('Failed to copy')
-      setTimeout(() => setCopyMessage(''), 2000)
-    }
-  }
-
   if (!isMobile) {
     return (
       <div className="desktop-redirect">
         <div className="redirect-content">
+          <img src={swifeyLogo} alt="Swifey" className="redirect-logo" />
           <h1>📱 Please open on mobile</h1>
           <p>This experience is designed for mobile devices.</p>
           <p>Please scan the QR code or open this link on your phone.</p>
@@ -74,83 +36,53 @@ function App() {
   return (
     <div className="swifey-rewards">
       <div className="rewards-container">
+        {/* Header with Logo */}
+        <div className="header-section">
+          <img src={swifeyLogo} alt="Swifey" className="swifey-logo" />
+          <h1 className="swifey-heading">Swifey Dating</h1>
+        </div>
 
+        {/* Points Display */}
         <div className="points-display">
           <div className="points-content">
-            <div className="points-text">
-              <div className="points-label">Your Points</div>
-              <div className="points-value">98.00</div>
-            </div>
+            <div className="points-label">Your Points</div>
+            <div className="points-value">42.00</div>
+          </div>
+          <div className="points-icon">🎁</div>
+        </div>
+
+        {/* Main CTA Section */}
+        <div className="cta-section">
+          <div className="cta-main">
+            You got 42 points - Just download swifey to claim the points
+          </div>
+          <div className="cta-sub">
+            You'll need to approve your profile in order to use the points
           </div>
         </div>
 
-        <div className="description-section">
-          <div className="main-description">
-            10K points airdropped everyday to active users.
-          </div>
-          <div className="sub-description">
-            Invite your friends to boost your points.
-          </div>
-        </div>
-
-        <div className="invite-code-section">
-          <div className="invite-code-container" onClick={copyInviteCode}>
-            <div className="code-display">
-              <span className="invite-code">{inviteCode}</span>
-              <span className="copy-text">{copyMessage || 'Tap to copy'}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="referrals-section">
-          <div className="referrals-header">
-            <span className="referrals-label">Users Referred</span>
-            <span className="referrals-count">3</span>
-          </div>
-          
-          <div className="referrals-list">
-            <div className="referral-item">
-              <div className="referral-user">
-                <div className="user-avatar"></div>
-                <div className="user-name">MBola</div>
-              </div>
-              <div className="join-date">
-                <span className="joined-label">Joined at </span>
-                <span className="date-text">Mar, 13 2025</span>
-              </div>
-            </div>
-
-            <div className="referral-item">
-              <div className="referral-user">
-                <div className="user-avatar"></div>
-                <div className="user-name">Lucky</div>
-              </div>
-              <div className="join-date">
-                <span className="joined-label">Joined at</span>
-                <span className="date-text"> Mar, 9 2025</span>
-              </div>
-            </div>
-
-            <div className="referral-item">
-              <div className="referral-user">
-                <div className="user-avatar"></div>
-                <div className="user-name">Arya</div>
-              </div>
-              <div className="join-date">
-                <span className="joined-label">Joined at</span>
-                <span className="date-text"> Mar, 9 2025</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="share-button-container">
-          <button className="share-button" onClick={shareInvite}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.12549 15.0077 5.24919 15.0227 5.37063L8.08261 9.19657C7.54305 8.46973 6.70861 8 5.77778 8C4.24365 8 3 9.34315 3 11C3 12.6569 4.24365 14 5.77778 14C6.70861 14 7.54305 13.5303 8.08261 12.8034L15.0227 16.6294C15.0077 16.7508 15 16.8745 15 17C15 18.6569 16.3431 20 18 20C19.6569 20 21 18.6569 21 17C21 15.3431 19.6569 14 18 14C17.0692 14 16.2347 14.4697 15.6952 15.1966L8.75523 11.3706C8.77025 11.2492 8.77778 11.1255 8.77778 11C8.77778 10.8745 8.77025 10.7508 8.75523 10.6294L15.6952 6.80343C16.2347 7.53027 17.0692 8 18 8Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Download Buttons */}
+        <div className="download-buttons">
+          <a href={appStoreLink} className="download-button apple-store">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="currentColor"/>
             </svg>
-            <span>Invite Friends</span>
-          </button>
+            <span>Download on App Store</span>
+          </a>
+          
+          <a href={playStoreLink} className="download-button play-store">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.61 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z" fill="currentColor"/>
+            </svg>
+            <span>Download on Google Play</span>
+          </a>
+        </div>
+
+        {/* Footer */}
+        <div className="footer">
+          <div className="footer-text">
+            Find your perfect match with Swifey!
+          </div>
         </div>
       </div>
     </div>
